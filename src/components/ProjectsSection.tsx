@@ -42,14 +42,15 @@ const ProjectsSection = () => {
       description: "Web app for dropshippers in GCC region with integrations to various suppliers and marketplaces.",
       technologies: ["AWS", "GraphQL", "MongoDB", "WebSockets"],
       highlight: true,
-      url: "dropshipping.markaz.app"
+      url: "https://dropshipping.markaz.app"
     },
     {
       title: "Inventory Management System",
       description: "All-in-one solution integrating with Shopify, WooCommerce, and Daraz for streamlined stock management.",
       technologies: ["MongoDB", "Node.js", "Express", "Integration APIs"],
       // githubLink: "https://github.com/developersection/nvntrl-demo",
-      url: "nvntri.com"
+      highlight: true,
+      url: "https://nvntri.com"
     },
     {
       title: "NICOP Facilitation App",
@@ -91,7 +92,7 @@ const ProjectsSection = () => {
                 <div className="flex justify-between items-start">
                   <CardTitle className="text-lg font-semibold flex items-center">
                     {project.highlight && <Star className="h-4 w-4 mr-2 text-accent fill-accent" />}
-                    <a href={project.url} target='_blank'>{project.title}</a> {project.url && <ExternalLinkIcon className="h-4 w-4 mr-2 ml-2 text-accent" />}
+                    <a href={project.url} target='_blank'>{project.title}</a> <a href={project.url}>{project.url && <ExternalLinkIcon className="h-5 w-5 mr-2 ml-2 text-accent" />}</a>
                   </CardTitle>
                   <div className="flex space-x-2">
                     {project.githubLink && (
