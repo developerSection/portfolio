@@ -55,7 +55,7 @@ const AboutSection = () => {
               <div className="absolute -inset-1 bg-gradient-to-r from-accent to-accent/50 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-500"></div>
               <div className="relative overflow-hidden rounded-lg">
                 <img 
-                  src="/lovable-uploads/ff7149e9-d7d1-4677-aec6-fd41c651285c.png" 
+                  src="/uploads/MUHAMMAD-AHMAD-DP.jpg" 
                   alt="Muhammad Ahmad" 
                   className="rounded-lg w-full max-w-[240px] border-2 border-accent/20 transition-transform duration-500 group-hover:scale-105"
                 />

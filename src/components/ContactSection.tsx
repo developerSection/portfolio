@@ -2,7 +2,7 @@
 import React, { useRef } from 'react';
 import { useInView } from '@/hooks/use-in-view';
 import { Card, CardContent } from '@/components/ui/card';
-import { Mail, MapPin, Github, Linkedin, Phone } from 'lucide-react';
+import { Mail, MapPin, Github, Linkedin, Phone, MessageCircleMore } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const ContactSection = () => {
@@ -16,18 +16,24 @@ const ContactSection = () => {
       value: "ahmadshahbaz1214@gmail.com",
       link: "mailto:ahmadshahbaz1214@gmail.com"
     },
+    // {
+    //   icon: <Phone className="h-5 w-5 text-accent" />,
+    //   label: "Phone",
+    //   value: "+92 305 5373599",
+    //   link: "tel:+923055373599"
+    // },
     {
-      icon: <Phone className="h-5 w-5 text-accent" />,
-      label: "Phone",
+      icon: <MessageCircleMore className="h-5 w-5 text-accent" />,
+      label: "WhatsApp",
       value: "+92 305 5373599",
-      link: "tel:+923055373599"
+      link: "https://wa.me/+923055373599"
     },
-    {
-      icon: <MapPin className="h-5 w-5 text-accent" />,
-      label: "Location",
-      value: "Islamabad, Pakistan",
-      link: null
-    },
+    // {
+    //   icon: <MapPin className="h-5 w-5 text-accent" />,
+    //   label: "Location",
+    //   value: "Islamabad, Pakistan",
+    //   link: null
+    // },
     {
       icon: <Github className="h-5 w-5 text-accent" />,
       label: "GitHub",

@@ -51,7 +51,7 @@ const Footer = () => {
         
         <div className="mt-6 text-center text-xs text-muted-foreground">
           <p>
-            Built with modern web technologies.
+            
           </p>
         </div>
       </div>

@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import { useInView } from '@/hooks/use-in-view';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Github, ExternalLink, Star } from 'lucide-react';
+import { Github, ExternalLink, Star, ExternalLinkIcon } from 'lucide-react';
 
 interface Project {
   title: string;
@@ -12,6 +12,7 @@ interface Project {
   githubLink?: string;
   liveLink?: string;
   highlight?: boolean;
+  url?: string;
 }
 
 const ProjectsSection = () => {
@@ -23,15 +24,16 @@ const ProjectsSection = () => {
       title: "Fintech Real Estate Investment App",
       description: "Enabling users to invest in real estate using crypto and earn profits. Features secure blockchain transactions and real-time reporting.",
       technologies: ["Node.js", "MongoDB", "AWS", "Blockchain", "BLANK Ledger"],
+      url: "https://rewoa.com",
       highlight: true
     },
     {
-      title: "Driver Tracking App",
+      title: "Universal Navigation App",
       description: "Real-time traffic alerts, road condition warnings, and speed camera notifications for drivers with focus on performance.",
-      technologies: ["WebSockets", "MongoDB", "AWS", "Mapbox", "Real-time APIs"]
+      technologies: ["WebSockets", "MongoDB", "AWS", "Mapbox", "Real-time APIs"],
     },
     {
-      title: "Wellness Reminder App",
+      title: "Smile App",
       description: "Sends uplifting messages and reminders to smile, focusing on user experience and clean code architecture.",
       technologies: ["Node.js", "Express", "MongoDB", "RESTful API"]
     },
@@ -39,13 +41,15 @@ const ProjectsSection = () => {
       title: "Dropshipping Platform",
       description: "Web app for dropshippers in GCC region with integrations to various suppliers and marketplaces.",
       technologies: ["AWS", "GraphQL", "MongoDB", "WebSockets"],
-      highlight: true
+      highlight: true,
+      url: "dropshipping.markaz.app"
     },
     {
       title: "Inventory Management System",
       description: "All-in-one solution integrating with Shopify, WooCommerce, and Daraz for streamlined stock management.",
       technologies: ["MongoDB", "Node.js", "Express", "Integration APIs"],
-      githubLink: "https://github.com/developersection/nvntrl-demo",
+      // githubLink: "https://github.com/developersection/nvntrl-demo",
+      url: "nvntri.com"
     },
     {
       title: "NICOP Facilitation App",
@@ -87,7 +91,7 @@ const ProjectsSection = () => {
                 <div className="flex justify-between items-start">
                   <CardTitle className="text-lg font-semibold flex items-center">
                     {project.highlight && <Star className="h-4 w-4 mr-2 text-accent fill-accent" />}
-                    {project.title}
+                    <a href={project.url} target='_blank'>{project.title}</a> {project.url && <ExternalLinkIcon className="h-4 w-4 mr-2 ml-2 text-accent" />}
                   </CardTitle>
                   <div className="flex space-x-2">
                     {project.githubLink && (

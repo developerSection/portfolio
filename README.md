@@ -1,73 +1,88 @@
-# Welcome to your Lovable project
+# My Portfolio Website
 
-## Project info
+# Muhammad Ahmad  
+**Software Engineer**  
+📧 ahmadshahbaz1214@gmail.com | 📞 +92 305 5373599  
+📍 Islamabad, Pakistan  
+🌐 [GitHub](https://github.com/developerSection) • [LinkedIn](https://linkedin.com/in/muhammad-ahmad-bse)
 
-**URL**: https://lovable.dev/projects/aa17fb30-506d-4bd1-ab2f-2103ff61beaf
+---
 
-## How can I edit this code?
+## 🧠 Professional Summary
 
-There are several ways of editing your application.
+- Software Engineer with 5 years of experience in Ecommerce and Fintech App Development.  
+- Solve complex challenges collaboratively, building scalable features that enhance UX and drive growth.  
+- Lead teams with a focus on innovation, delivering strategic solutions in dynamic environments.  
+- Write clean, efficient code and actively participate in code reviews to ensure quality and best practices.
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/aa17fb30-506d-4bd1-ab2f-2103ff61beaf) and start prompting.
+## 🎓 Education
 
-Changes made via Lovable will be committed automatically to this repo.
+**Comsats University Islamabad, Wah Campus**  
+**Bachelor of Science in Software Engineering (2016–2020)**  
+CGPA: 3.30/4.00  
+📌 Final Year Project: *Object Detection with Self-trained AI Model using Drone*
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🛠️ Technical Skills
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Languages**: JavaScript, TypeScript, Python  
+- **Frameworks**: Node.js, Express.js, Angular, React, NestJS  
+- **Databases & ORMs**: MongoDB, MySQL, Postgres, Mongoose, Sequelize  
+- **Other Tools**: AWS Serverless, REST APIs, GraphQL, Git, GitHub, CI/CD Pipelines  
+- **Integrations**: WooCommerce, Shopify, Daraz/Lazada, Stripe, Mamopay, Fireblocks, BLANK Ledger, IDWise, Mapbox, FFMPEG
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 🤝 Soft Skills
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- Leadership and collaboration  
+- Clear technical communication  
+- Analytical problem-solving  
+- Adaptability to new tools and environments
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+## 💼 Experience
 
-**Edit a file directly in GitHub**
+### **Senior Backend Engineer**  
+**RFZ Digital** — *Islamabad, Pakistan*  
+📅 *Jan 2025 – Present*
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- Developed a fintech app allowing crypto-based real estate investment with high scalability and secure transactions.  
+- Built a real-time driver communication app with traffic alerts and speed notifications.  
+- Created a wellness app delivering positive messages with focus on UX and scalability.
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### **Software Engineer**  
+**Markaz Technologies Pvt. Ltd** — *Islamabad, Pakistan*  
+📅 *June 2023 – Dec 2024*
 
-## What technologies are used for this project?
+- Led backend of a dropshipping web app for GCC, achieving 95% operational efficiency via AWS, WebSockets, GraphQL.  
+- Built Shopify app for dropshippers saving 20+ hours/week.  
+- Automated product listings and reduced time by 50% for 1200+ suppliers.  
+- Developed a lossless image compression algorithm reducing size by 5x and improving load time by 75%.
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### **Full Stack Developer (MERN)**  
+**Neuron Solutions** — *Islamabad, Pakistan*  
+📅 *June 2022 – May 2023*
 
-## How can I deploy this project?
+- Built NVNTRI – an all-in-one inventory management tool integrated with Shopify, WooCommerce, Daraz.  
+- Improved multi-channel management efficiency by 30% with centralized login and stock handling.
 
-Simply open [Lovable](https://lovable.dev/projects/aa17fb30-506d-4bd1-ab2f-2103ff61beaf) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
+### **Full Stack Developer (MEAN)**  
+**ePatronus IT Solutions** — *Islamabad, Pakistan*  
+📅 *Sep 2020 – June 2022*
 
-Yes it is!
+- Developed apps like NICOP Facilitation (for overseas ID) and Textilion (tailoring order platform).  
+- Used Angular and Node.js, deployed to DigitalOcean, achieving 90% client satisfaction.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+---
+s

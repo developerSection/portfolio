@@ -39,7 +39,7 @@ const EducationSection = () => {
                 <div>
                   <h4 className="text-sm font-medium flex items-center">
                     <Scroll className="h-4 w-4 mr-2 text-accent" />
-                    Notable Project
+                    Final Year Project
                   </h4>
                   <p className="text-muted-foreground mt-1">
                     Object Detection with self-trained AI Model using Drone
