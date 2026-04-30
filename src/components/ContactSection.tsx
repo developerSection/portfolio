@@ -1,125 +1,72 @@
+import React from 'react';
+import Reveal from './Reveal';
+import { Mail, Github, Linkedin, MapPin, Phone, ArrowUpRight } from 'lucide-react';
 
-import React, { useRef } from 'react';
-import { useInView } from '@/hooks/use-in-view';
-import { Card, CardContent } from '@/components/ui/card';
-import { Mail, MapPin, Github, Linkedin, Phone, MessageCircleMore } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+const channels = [
+  { label: 'Email', value: 'ahmadshahbaz1214@gmail.com', href: 'mailto:ahmadshahbaz1214@gmail.com', icon: Mail },
+  { label: 'LinkedIn', value: 'linkedin.com/in/muhammadahmad-bse', href: 'https://linkedin.com/in/muhammadahmad-bse', icon: Linkedin },
+  { label: 'GitHub', value: 'github.com/developersection', href: 'https://github.com/developersection', icon: Github },
+  { label: 'Phone', value: '+92 305 5373599', href: 'tel:+923055373599', icon: Phone },
+];
 
 const ContactSection = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.2 });
-
-  const contactInfo = [
-    {
-      icon: <Mail className="h-5 w-5 text-accent" />,
-      label: "Email",
-      value: "ahmadshahbaz1214@gmail.com",
-      link: "mailto:ahmadshahbaz1214@gmail.com"
-    },
-    // {
-    //   icon: <Phone className="h-5 w-5 text-accent" />,
-    //   label: "Phone",
-    //   value: "+92 305 5373599",
-    //   link: "tel:+923055373599"
-    // },
-    {
-      icon: <MessageCircleMore className="h-5 w-5 text-accent" />,
-      label: "WhatsApp",
-      value: "+92 305 5373599",
-      link: "https://wa.me/+923055373599"
-    },
-    // {
-    //   icon: <MapPin className="h-5 w-5 text-accent" />,
-    //   label: "Location",
-    //   value: "Islamabad, Pakistan",
-    //   link: null
-    // },
-    {
-      icon: <Github className="h-5 w-5 text-accent" />,
-      label: "GitHub",
-      value: "github.com/developersection",
-      link: "https://github.com/developersection"
-    },
-    {
-      icon: <Linkedin className="h-5 w-5 text-accent" />,
-      label: "LinkedIn",
-      value: "linkedin.com/in/muhammad-ahmad-bse",
-      link: "https://linkedin.com/in/muhammad-ahmad-bse"
-    }
-  ];
-
   return (
-    <section id="contact" className="py-20 px-4 md:px-6">
-      <div className="container mx-auto max-w-4xl">
-        <h2 className="section-heading">Get In Touch</h2>
-        
-        <div 
-          ref={ref}
-          className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${
-            isInView ? 'opacity-100' : 'opacity-0'
-          } transition-opacity duration-700`}
-        >
-          <div>
-            <Card className="glass-card h-full">
-              <CardContent className="p-6 space-y-6">
-                <div className="space-y-4">
-                  <h3 className="text-lg font-medium">Contact Information</h3>
-                  <p className="text-muted-foreground">
-                    Feel free to reach out for collaborations, opportunities, or just to say hello!
-                  </p>
-                </div>
-                
-                <div className="space-y-4">
-                  {contactInfo.map((item, index) => (
-                    <div 
-                      key={item.label} 
-                      className="flex items-center space-x-3"
-                    >
-                      <div className="flex-shrink-0">
-                        {item.icon}
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-xs text-muted-foreground">{item.label}</p>
-                        {item.link ? (
-                          <a 
-                            href={item.link} 
-                            className="text-sm hover:text-accent transition-colors"
-                            target={item.link.startsWith('http') ? '_blank' : undefined}
-                            rel={item.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                          >
-                            {item.value}
-                          </a>
-                        ) : (
-                          <p className="text-sm">{item.value}</p>
-                        )}
-                      </div>
+    <section id="contact" className="py-24 sm:py-32 border-t border-border">
+      <div className="container-narrow">
+        <Reveal className="section-kicker">
+          <span className="section-num">— 07</span>
+          <span className="eyebrow">Contact</span>
+        </Reveal>
+
+        <Reveal>
+          <h2 className="font-display text-[clamp(2.5rem,7vw,5rem)] font-medium leading-[1] tracking-tight text-balance">
+            Have a system worth <em className="text-accent-foreground/90">building</em>?
+            <br />
+            <a
+              href="mailto:ahmadshahbaz1214@gmail.com"
+              className="inline-flex items-center gap-3 mt-3 group"
+            >
+              <span className="border-b-2 border-foreground/30 group-hover:border-foreground transition-colors">
+                Let's talk.
+              </span>
+              <ArrowUpRight className="h-12 w-12 sm:h-16 sm:w-16 transition-transform group-hover:translate-x-2 group-hover:-translate-y-2" strokeWidth={1.5} />
+            </a>
+          </h2>
+        </Reveal>
+
+        <Reveal delay={120}>
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden border border-border">
+            {channels.map((c) => {
+              const Icon = c.icon;
+              return (
+                <a
+                  key={c.label}
+                  href={c.href}
+                  target={c.href.startsWith('http') ? '_blank' : undefined}
+                  rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="group bg-card p-6 sm:p-7 flex items-center justify-between gap-4 hover:bg-accent/10 transition-colors"
+                >
+                  <div className="flex items-center gap-4 min-w-0">
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background shrink-0">
+                      <Icon size={16} />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="eyebrow">{c.label}</p>
+                      <p className="font-medium truncate">{c.value}</p>
                     </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                  </div>
+                  <ArrowUpRight size={18} className="shrink-0 text-muted-foreground group-hover:text-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                </a>
+              );
+            })}
           </div>
-          
-          <div>
-            <Card className={`glass-card ${isInView ? 'animate-slide-up animate-delay-200' : ''}`}>
-              <CardContent className="p-6 flex flex-col items-center justify-center h-full space-y-6">
-                <div className="text-center space-y-3">
-                  <h3 className="text-lg font-medium">Let's Work Together</h3>
-                  <p className="text-muted-foreground">
-                    I'm currently available for new opportunities and collaborations.
-                  </p>
-                </div>
-                
-                <Button asChild>
-                  <a href="mailto:ahmadshahbaz1214@gmail.com">
-                    <Mail className="mr-2 h-4 w-4" />
-                    Send an Email
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
+        </Reveal>
+
+        <Reveal delay={200}>
+          <p className="mt-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+            <MapPin size={14} /> Based in Islamabad, Pakistan · Open to remote
+          </p>
+        </Reveal>
       </div>
     </section>
   );

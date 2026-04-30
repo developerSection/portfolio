@@ -1,94 +1,54 @@
+import React from 'react';
+import Reveal from './Reveal';
 
-import React, { useRef } from 'react';
-import { useInView } from '@/hooks/use-in-view';
-import { Card } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Code, Server, Database, Cloud, ShoppingBag } from 'lucide-react';
-
-interface SkillCategory {
+interface Group {
   title: string;
-  skills: string[];
-  icon: React.ReactNode;
+  items: string[];
 }
 
+const groups: Group[] = [
+  { title: 'Languages', items: ['JavaScript', 'TypeScript', 'Python', 'SQL'] },
+  { title: 'Backend & APIs', items: ['Node.js', 'Express.js', 'NestJS', 'FastAPI', 'REST', 'GraphQL', 'WebSockets'] },
+  { title: 'Cloud & DevOps', items: ['AWS (EC2, ECS, RDS, Lambda, S3, ALB, API GW)', 'Docker', 'Kubernetes', 'CI/CD', 'Serverless Framework', 'AWS SAM', 'CloudFormation'] },
+  { title: 'Messaging & Eventing', items: ['Kafka', 'AWS SQS', 'AWS SNS', 'EventBridge'] },
+  { title: 'Databases', items: ['PostgreSQL', 'MongoDB', 'Redis', 'DynamoDB', 'Schema Design', 'Indexing'] },
+  { title: 'Architecture & Security', items: ['Microservices', 'Event-Driven', 'System Design', 'OAuth2', 'JWT', 'RBAC'] },
+  { title: 'AI & ML', items: ['RAG Apps', 'Vector Search', 'AI Agents', 'LangChain', 'OpenAI API'] },
+  { title: 'Testing & Tools', items: ['Jest', 'pytest', 'Git', 'Postman', 'Swagger', 'Jira', 'Agile/Scrum'] },
+];
+
 const SkillsSection = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { isInView } = useInView(ref, { once: true, threshold: 0.1 });
-
-  const skillCategories: SkillCategory[] = [
-    {
-      title: "Programming Languages",
-      skills: ["JavaScript", "TypeScript", "Python"],
-      icon: <Code className="h-6 w-6 text-accent" />
-    },
-    {
-      title: "Frameworks",
-      skills: ["NodeJS", "ExpressJS", "Angular", "React", "NestJS"],
-      icon: <Server className="h-6 w-6 text-accent" />
-    },
-    {
-      title: "Database and ORM/ODMs",
-      skills: ["MongoDB", "MySQL", "PostgreSQL", "Mongoose", "Sequelize"],
-      icon: <Database className="h-6 w-6 text-accent" />
-    },
-    {
-      title: "Other Technologies",
-      skills: ["AWS Serverless", "REST APIs", "GraphQL", "Git", "GitHub", "CI/CD Pipelines"],
-      icon: <Cloud className="h-6 w-6 text-accent" />
-    },
-    {
-      title: "Software and Integrations",
-      skills: ["WooCommerce", "Shopify", "Daraz/Lazada", "Stripe", "Mamopay", "Fireblocks", "BLANK Ledger", "IDWise", "Mapbox", "FFmpeg"],
-      icon: <ShoppingBag className="h-6 w-6 text-accent" />
-    }
-  ];
-
   return (
-    <section id="skills" className="py-20 px-4 md:px-6 bg-secondary/5 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-accent/5 blur-3xl"></div>
-      <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-accent/5 blur-3xl"></div>
-      
-      <div className="container mx-auto max-w-4xl relative z-10">
-        <h2 className="section-heading">Technical Skills</h2>
-        
-        <div 
-          ref={ref} 
-          className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${
-            isInView ? 'opacity-100' : 'opacity-0'
-          } transition-opacity duration-700`}
-        >
-          {skillCategories.map((category, index) => (
-            <Card 
-              key={category.title} 
-              className={`p-6 glass-card overflow-hidden hover-lift ${
-                isInView ? 'animate-slide-up' : ''
-              }`}
-              style={{
-                animationDelay: `${index * 100}ms`
-              }}
-            >
-              <div className="flex items-center mb-4">
-                <div className="mr-3 p-2 rounded-lg bg-accent/10">
-                  {category.icon}
+    <section id="skills" className="py-24 sm:py-32 border-t border-border bg-secondary/40">
+      <div className="container-narrow">
+        <Reveal className="section-kicker">
+          <span className="section-num">— 02</span>
+          <span className="eyebrow">Skills</span>
+        </Reveal>
+
+        <Reveal>
+          <h2 className="section-title mb-12 text-balance max-w-3xl">
+            A toolkit chosen for <em className="text-accent-foreground/90">reliability</em> and reach.
+          </h2>
+        </Reveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden border border-border">
+          {groups.map((g, i) => (
+            <Reveal key={g.title} delay={i * 60}>
+              <div className="bg-card p-6 sm:p-8 h-full">
+                <div className="flex items-baseline justify-between mb-4">
+                  <h3 className="font-display text-lg font-medium">{g.title}</h3>
+                  <span className="font-mono text-xs text-muted-foreground tabular-nums">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
                 </div>
-                <h3 className="text-lg font-semibold text-primary">
-                  {category.title}
-                </h3>
+                <div className="flex flex-wrap gap-1.5">
+                  {g.items.map((s) => (
+                    <span key={s} className="pill text-[11px]">{s}</span>
+                  ))}
+                </div>
               </div>
-              
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map(skill => (
-                  <Badge 
-                    key={skill} 
-                    variant="secondary"
-                    className="bg-secondary/50 hover:bg-accent/20 transition-colors duration-300"
-                  >
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </Card>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -1,140 +1,112 @@
-
-import React, { useRef } from 'react';
-import { useInView } from '@/hooks/use-in-view';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Github, ExternalLink, Star, ExternalLinkIcon } from 'lucide-react';
+import React from 'react';
+import Reveal from './Reveal';
+import { ArrowUpRight } from 'lucide-react';
 
 interface Project {
   title: string;
+  domain: string;
   description: string;
-  technologies: string[];
-  githubLink?: string;
-  liveLink?: string;
+  stack: string[];
+  link?: string;
   highlight?: boolean;
-  url?: string;
 }
 
+const projects: Project[] = [
+  {
+    title: 'Rewoa',
+    domain: 'Fintech',
+    description:
+      'Fractional real-estate investment platform with fiat & crypto, double-entry ledger, JWT/RBAC and Kafka-driven portfolio lifecycle.',
+    stack: ['Node.js', 'PostgreSQL', 'AWS ECS', 'Kafka'],
+    highlight: true,
+  },
+  {
+    title: 'Money Right',
+    domain: 'Personal Finance',
+    description:
+      'Open Banking aggregator with AI-driven expense categorisation and goal-based savings recommendations, async-processed via SQS.',
+    stack: ['NestJS', 'PostgreSQL', 'OpenAI', 'AWS SQS'],
+    highlight: true,
+  },
+  {
+    title: 'Universal Navigation',
+    domain: 'AI / Mobility',
+    description:
+      'AI-powered driver assistance — real-time traffic, road rules and context-aware routing with sub-100ms latency over WebSockets.',
+    stack: ['Node.js', 'WebSockets', 'Redis', 'AI Models'],
+  },
+  {
+    title: 'Accounting Platform',
+    domain: 'SaaS',
+    description:
+      'Serverless accounting suite for expenses, invoices and automated monthly reporting on a fully event-driven architecture.',
+    stack: ['Python', 'FastAPI', 'AWS SAM', 'Lambda'],
+  },
+  {
+    title: 'Markaz Dropshipping',
+    domain: 'E-commerce (GCC)',
+    description:
+      'Microservices backend serving thousands of concurrent users; reduced AWS infra cost by 50% through architecture and code-level wins.',
+    stack: ['AWS Lambda', 'Python', 'GraphQL', 'MongoDB'],
+  },
+  {
+    title: 'NVNTRI',
+    domain: 'Inventory',
+    description:
+      'Multi-channel inventory platform syncing stock across Shopify, WooCommerce and Daraz with Redis-cached queries.',
+    stack: ['Node.js', 'MongoDB', 'Redis'],
+  },
+];
+
 const ProjectsSection = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { isInView } = useInView(ref, { once: true, threshold: 0.1 });
-
-  const projects: Project[] = [
-    {
-      title: "Fintech Real Estate Investment App",
-      description: "Enabling users to invest in real estate using crypto and earn profits. Features secure blockchain transactions and real-time reporting.",
-      technologies: ["Node.js", "MongoDB", "AWS", "Blockchain", "BLANK Ledger"],
-      url: "https://rewoa.com",
-      highlight: true
-    },
-    {
-      title: "Universal Navigation App",
-      description: "Real-time traffic alerts, road condition warnings, and speed camera notifications for drivers with focus on performance.",
-      technologies: ["WebSockets", "MongoDB", "AWS", "Mapbox", "Real-time APIs"],
-    },
-    {
-      title: "Smile App",
-      description: "Sends uplifting messages and reminders to smile, focusing on user experience and clean code architecture.",
-      technologies: ["Node.js", "Express", "MongoDB", "RESTful API"]
-    },
-    {
-      title: "Dropshipping Platform",
-      description: "Web app for dropshippers in GCC region with integrations to various suppliers and marketplaces.",
-      technologies: ["AWS", "GraphQL", "MongoDB", "WebSockets"],
-      highlight: true,
-      url: "https://dropshipping.markaz.app"
-    },
-    {
-      title: "Inventory Management System",
-      description: "All-in-one solution integrating with Shopify, WooCommerce, and Daraz for streamlined stock management.",
-      technologies: ["MongoDB", "Node.js", "Express", "Integration APIs"],
-      // githubLink: "https://github.com/developersection/nvntrl-demo",
-      highlight: true,
-      url: "https://nvntri.com"
-    },
-    {
-      title: "NICOP Facilitation App",
-      description: "Facilitation application for overseas identification with streamlined user experience.",
-      technologies: ["Angular", "Node.js", "MongoDB"],
-    }
-  ];
-
   return (
-    <section id="projects" className="py-20 px-4 md:px-6 bg-secondary/5 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute top-20 right-40 w-72 h-72 rounded-full bg-accent/5 blur-3xl"></div>
-      <div className="absolute bottom-40 left-20 w-64 h-64 rounded-full bg-accent/5 blur-3xl"></div>
-      
-      <div className="container mx-auto max-w-4xl relative z-10">
-        <h2 className="section-heading">Notable Projects</h2>
-        
-        <div 
-          ref={ref} 
-          className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${
-            isInView ? 'opacity-100' : 'opacity-0'
-          } transition-opacity duration-700`}
-        >
-          {projects.map((project, index) => (
-            <Card 
-              key={project.title} 
-              className={`overflow-hidden hover:shadow-xl transition-all hover-lift ${
-                project.highlight 
-                  ? 'border border-accent/30 bg-gradient-to-br from-accent/5 to-transparent' 
-                  : 'glass-card'
-              } ${
-                isInView ? 'animate-slide-up' : ''
-              }`}
-              style={{
-                animationDelay: `${index * 100}ms`
-              }}
-            >
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <CardTitle className="text-lg font-semibold flex items-center">
-                    {project.highlight && <Star className="h-4 w-4 mr-2 text-accent fill-accent" />}
-                    <a href={project.url} target='_blank'>{project.title}</a> <a href={project.url}>{project.url && <ExternalLinkIcon className="h-5 w-5 mr-2 ml-2 text-accent" />}</a>
-                  </CardTitle>
-                  <div className="flex space-x-2">
-                    {project.githubLink && (
-                      <a 
-                        href={project.githubLink} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-accent transition-colors"
-                        aria-label="GitHub Repository"
-                      >
-                        <Github size={18} />
-                      </a>
-                    )}
-                    {project.liveLink && (
-                      <a 
-                        href={project.liveLink} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-accent transition-colors"
-                        aria-label="Live Demo"
-                      >
-                        <ExternalLink size={18} />
-                      </a>
-                    )}
+    <section id="projects" className="py-24 sm:py-32 border-t border-border bg-secondary/40">
+      <div className="container-narrow">
+        <Reveal className="section-kicker">
+          <span className="section-num">— 04</span>
+          <span className="eyebrow">Selected Projects</span>
+        </Reveal>
+
+        <Reveal>
+          <h2 className="section-title mb-14 text-balance max-w-3xl">
+            Things I've designed, built and shipped.
+          </h2>
+        </Reveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+          {projects.map((p, i) => (
+            <Reveal key={p.title} delay={i * 60}>
+              <article className="card-warm group p-6 sm:p-7 h-full flex flex-col">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <span className="eyebrow">{p.domain}</span>
+                    <h3 className="mt-1 font-display text-2xl font-medium leading-tight">{p.title}</h3>
                   </div>
+                  {p.highlight && (
+                    <span className="pill-accent">★ Featured</span>
+                  )}
                 </div>
-                <CardDescription>{project.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {project.technologies.map(tech => (
-                    <Badge 
-                      key={tech} 
-                      variant="secondary" 
-                      className="text-xs bg-secondary/50 hover:bg-accent/20 transition-colors"
-                    >
-                      {tech}
-                    </Badge>
+
+                <p className="mt-4 text-sm text-muted-foreground leading-relaxed flex-1">{p.description}</p>
+
+                <div className="mt-5 flex flex-wrap gap-1.5">
+                  {p.stack.map((s) => (
+                    <span key={s} className="pill text-[11px]">{s}</span>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+
+                {p.link && (
+                  <a
+                    href={p.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-foreground"
+                  >
+                    Visit <ArrowUpRight size={14} />
+                  </a>
+                )}
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>

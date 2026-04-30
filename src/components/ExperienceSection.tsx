@@ -1,135 +1,129 @@
-
-import React, { useRef } from 'react';
-import { useInView } from '@/hooks/use-in-view';
-import { Card } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import React from 'react';
+import Reveal from './Reveal';
 
 interface Experience {
   position: string;
   company: string;
-  location: string;
   period: string;
-  description: string[];
-  technologies?: string[];
+  location: string;
+  summary: string;
+  bullets: string[];
+  stack: string[];
 }
 
+const experiences: Experience[] = [
+  {
+    position: 'Senior Backend Engineer',
+    company: 'RFZ Digital',
+    period: 'Jan 2025 — Present',
+    location: 'Islamabad, PK',
+    summary:
+      'Leading backend for a fintech platform, an AI-powered driver assistant and a personal finance app.',
+    bullets: [
+      'Built Rewoa, a fintech platform for fractional real-estate investment with fiat & crypto, using Node.js, Express and PostgreSQL with a double-entry ledger.',
+      'Deployed on AWS ECS with Docker, ALB and Auto Scaling Groups; integrated Kafka for event-driven notifications and portfolio lifecycle.',
+      'Built Money Right (NestJS + PostgreSQL) with Open Banking integration for transaction aggregation and AI-driven expense categorisation via OpenAI + AWS SQS.',
+      'Created Universal Navigation — an AI driver assistance system with real-time traffic, road rules and route optimisation using Node.js, WebSockets and Redis with sub-100ms latency.',
+      'Developed a serverless accounting platform (Python, FastAPI, AWS SAM) supporting expenses, invoices and automated monthly reporting.',
+    ],
+    stack: ['Node.js', 'NestJS', 'Python', 'FastAPI', 'PostgreSQL', 'Redis', 'Kafka', 'AWS ECS', 'AWS SAM', 'OpenAI'],
+  },
+  {
+    position: 'Software Engineer',
+    company: 'Markaz Technologies (YC W22)',
+    period: 'Jun 2023 — Dec 2024',
+    location: 'Islamabad, PK',
+    summary:
+      'Owned backend architecture for a GCC dropshipping platform serving thousands of concurrent users.',
+    bullets: [
+      'Led backend on AWS Lambda + Python + GraphQL + MongoDB with a microservices architecture.',
+      'Reduced AWS infrastructure cost by 50% through rightsizing and code-level optimisations.',
+      'Delivered production system in 3 months with 95% operational efficiency.',
+      'Built a Shopify integration (Node.js) automating inventory sync and order management — saving 20+ hours/week per user.',
+      'Implemented event-driven workflows with Lambda + SQS, scaling to 1,200+ suppliers.',
+      'Developed compression algorithm reducing media size 5× and load times by 75%.',
+    ],
+    stack: ['AWS Lambda', 'Python', 'GraphQL', 'MongoDB', 'SQS', 'Node.js', 'Shopify API'],
+  },
+  {
+    position: 'Software Engineer (MERN)',
+    company: 'Neuron Solutions',
+    period: 'Jun 2022 — May 2023',
+    location: 'Islamabad, PK',
+    summary: 'Built NVNTRI, a multi-channel inventory platform for Shopify, WooCommerce & Daraz.',
+    bullets: [
+      'Implemented real-time stock sync across channels with optimised queries and Redis caching, reducing discrepancies by 30%.',
+    ],
+    stack: ['Node.js', 'MongoDB', 'Redis', 'Shopify', 'WooCommerce'],
+  },
+  {
+    position: 'Software Engineer (MEAN)',
+    company: 'ePatronus IT Solutions',
+    period: 'Sep 2020 — Jun 2022',
+    location: 'Islamabad, PK',
+    summary: 'Built NICOP Facilitation App and Textilion tailoring management system.',
+    bullets: [
+      'Implemented secure authentication, authorisation and data validation for sensitive user information.',
+    ],
+    stack: ['Angular', 'Node.js', 'MongoDB', 'Express'],
+  },
+];
+
 const ExperienceSection = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { isInView } = useInView(ref, { once: true, threshold: 0.1 });
-
-  const experiences: Experience[] = [
-    {
-      position: "Senior Backend Engineer",
-      company: "RFZ Digital",
-      location: "Islamabad, Pakistan",
-      period: "January 2025 – Present",
-      description: [
-        "Developed a fintech app enabling users to invest in real estate using crypto and earn profits, ensuring scalability and secure transactions.",
-        "Built a driver tracking and communication app with real-time traffic alerts, road condition warnings, and speed camera notifications, focusing on performance and reliability.",
-        "Created a wellness app that sends reminders to smile and uplifting messages, emphasizing clean code, scalability, and user experience."
-      ],
-      technologies: ["Node.js", "AWS", "MongoDB", "Blockchain", "WebSockets"]
-    },
-    {
-      position: "Software Engineer",
-      company: "Markaz Technologies Pvt. Ltd",
-      location: "Islamabad, Pakistan",
-      period: "June 2023 – December 2024",
-      description: [
-        "Led backend development for a dropshipping web app in GCC, using AWS, WebSockets, GraphQL, and MongoDB to achieve 95% operational efficiency.",
-        "Built a Shopify integration app for dropshippers, streamlining inventory sync and order handling, saving 20+ hours per week.",
-        "Automated product listing, cutting time by 50%, enabling 1200+ suppliers to onboard efficiently.",
-        "Developed a lossless compression algorithm, reducing file sizes 5x and load times by 75% for better UX."
-      ],
-      technologies: ["AWS Lambda", "GraphQL", "MongoDB", "WebSockets", "Shopify API"]
-    },
-    {
-      position: "Full Stack Developer (MERN)",
-      company: "Neuron Solutions",
-      location: "Islamabad, Pakistan",
-      period: "June 2022 – May 2023",
-      description: [
-        "NVNTRL Inventory Management Tool: Developed and maintained NVNTRL, an all-in-one inventory management solution that integrates seamlessly with Shopify, WooCommerce, and Daraz. Built using MongoDB and Node.js, the tool streamlines stock management, increasing multi-channel efficiency by 30% and unlocking the capability to manage multiple e-commerce stores with a single login."
-      ],
-      technologies: ["MongoDB", "Express", "React", "Node.js", "Shopify", "WooCommerce"]
-    },
-    {
-      position: "Full Stack Developer (MEAN)",
-      company: "ePatronus IT Solutions",
-      location: "Islamabad, Pakistan",
-      period: "September 2020 – June 2022",
-      description: [
-        "Built robust, scalable applications, including NICOP Facilitation App for overseas identification and Textilion for tailoring order management. Utilized Angular and Node.js for seamless user experiences and deployed to Digital ocean, achieving a 90% client satisfaction rate."
-      ],
-      technologies: ["Angular", "Node.js", "MongoDB", "ExpressJS", "DigitalOcean"]
-    }
-  ];
-
   return (
-    <section id="experience" className="py-20 px-4 md:px-6 relative">
-      {/* Background elements */}
-      <div className="absolute top-40 right-0 w-64 h-64 rounded-full bg-accent/5 blur-3xl"></div>
-      <div className="absolute bottom-40 left-0 w-56 h-56 rounded-full bg-accent/5 blur-3xl"></div>
-      
-      <div className="container mx-auto max-w-4xl relative z-10">
-        <h2 className="section-heading">Work Experience</h2>
-        
-        <div 
-          ref={ref} 
-          className={`relative space-y-12 pl-6 before:absolute before:left-0 before:top-2 before:h-[calc(100%-2rem)] before:w-px before:-ml-0.5 before:bg-gradient-to-b before:from-accent before:via-accent/50 before:to-transparent ${
-            isInView ? 'opacity-100' : 'opacity-0'
-          } transition-opacity duration-700`}
-        >
-          {experiences.map((exp, index) => (
-            <div 
-              key={`${exp.company}-${index}`}
-              className={`relative ${
-                isInView ? 'animate-slide-up' : ''
-              }`}
-              style={{
-                animationDelay: `${index * 150}ms`
-              }}
-            >
-              <span className="absolute -left-[22px] flex h-4 w-4 items-center justify-center rounded-full bg-accent shadow-[0_0_10px_4px_rgba(139,92,246,0.3)] -mt-2 z-10"></span>
-              
-              <Card className="glass-card p-6 transition-all hover:shadow-glow hover:border-accent/30 group">
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-3 gap-2">
-                  <h3 className="text-lg font-semibold text-primary group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-accent transition-all duration-300">
-                    {exp.position} <span className="text-accent">@</span> {exp.company}
-                  </h3>
-                  <div className="flex items-center gap-2">
-                    <Badge variant="outline" className="text-xs font-normal">
-                      {exp.location}
-                    </Badge>
-                    <Badge variant="secondary" className="text-xs font-normal">
-                      {exp.period}
-                    </Badge>
-                  </div>
+    <section id="experience" className="py-24 sm:py-32 border-t border-border">
+      <div className="container-narrow">
+        <Reveal className="section-kicker">
+          <span className="section-num">— 03</span>
+          <span className="eyebrow">Experience</span>
+        </Reveal>
+
+        <Reveal>
+          <h2 className="section-title mb-14 text-balance max-w-3xl">
+            Where I've shipped <em className="text-accent-foreground/90">real systems</em>.
+          </h2>
+        </Reveal>
+
+        <ol className="space-y-px">
+          {experiences.map((exp, i) => (
+            <Reveal key={exp.company} delay={i * 80}>
+              <li className="group grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 border-t border-border">
+                {/* Period */}
+                <div className="md:col-span-3 flex md:flex-col md:items-start items-center justify-between gap-2">
+                  <span className="font-mono text-xs text-muted-foreground tabular-nums">{exp.period}</span>
+                  <span className="font-mono text-[11px] text-muted-foreground/70">{exp.location}</span>
                 </div>
-                
-                <ul className="space-y-3 ml-4 list-disc text-muted-foreground">
-                  {exp.description.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-                
-                {exp.technologies && (
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {exp.technologies.map((tech, i) => (
-                      <Badge 
-                        key={i} 
-                        variant="skill" 
-                        className="text-xs bg-accent/10 text-accent border-accent/20 hover:bg-accent/20 transition-colors"
-                      >
-                        {tech}
-                      </Badge>
+
+                {/* Body */}
+                <div className="md:col-span-9 space-y-4">
+                  <div>
+                    <h3 className="font-display text-2xl sm:text-3xl font-medium leading-tight">
+                      {exp.position}
+                      <span className="text-muted-foreground"> · </span>
+                      <span className="italic text-foreground/85">{exp.company}</span>
+                    </h3>
+                    <p className="mt-2 text-muted-foreground text-pretty">{exp.summary}</p>
+                  </div>
+
+                  <ul className="space-y-2 text-sm text-foreground/80 leading-relaxed">
+                    {exp.bullets.map((b, idx) => (
+                      <li key={idx} className="relative pl-5">
+                        <span className="absolute left-0 top-2.5 h-1 w-1 rounded-full bg-accent" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {exp.stack.map((s) => (
+                      <span key={s} className="pill text-[11px]">{s}</span>
                     ))}
                   </div>
-                )}
-              </Card>
-            </div>
+                </div>
+              </li>
+            </Reveal>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

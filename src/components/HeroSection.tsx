@@ -1,125 +1,127 @@
-
 import React, { useEffect, useState } from 'react';
-import { ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { ArrowUpRight, MapPin } from 'lucide-react';
+
+const lines = [
+  { prompt: '~/ahmad', cmd: 'whoami', out: 'Muhammad Ahmad — Senior Backend Engineer' },
+  { prompt: '~/ahmad', cmd: 'cat about.md', out: '5+ yrs building production fintech & e-commerce systems' },
+  { prompt: '~/ahmad', cmd: 'ls stack/', out: 'node.js  python  postgres  aws  kafka  redis  ai/' },
+  { prompt: '~/ahmad', cmd: 'status --now', out: 'Available for senior backend & staff roles' },
+];
 
 const HeroSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [typedName, setTypedName] = useState('');
-  const [cursorVisible, setCursorVisible] = useState(true);
-  const fullName = 'Muhammad Ahmad';
-  
-  useEffect(() => {
-    setIsVisible(true);
-    
-    // Typing effect for the name - more gradual
-    let currentIndex = 0;
-    const typingInterval = setInterval(() => {
-      if (currentIndex <= fullName.length) {
-        setTypedName(fullName.slice(0, currentIndex));
-        currentIndex++;
-      } else {
-        clearInterval(typingInterval);
-      }
-    }, 200);
-    
-    // Blinking cursor effect
-    const cursorInterval = setInterval(() => {
-      setCursorVisible(prev => !prev);
-    }, 530);
-    
-    return () => {
-      clearInterval(typingInterval);
-      clearInterval(cursorInterval);
-    };
-  }, []);
+  const [step, setStep] = useState(0);
+  const [typed, setTyped] = useState('');
 
-  // Skill pills data
-  const skills = [
-    { name: 'JavaScript', color: 'yellow' },
-    { name: 'TypeScript', color: 'blue' },
-    { name: 'Python', color: 'green' },
-    { name: 'MongoDB', color: 'green' },
-    { name: 'AWS Serverless', color: 'orange' },
-    { name: 'Microservices', color: 'purple' }
-  ];
+  useEffect(() => {
+    if (step >= lines.length) return;
+    const cmd = lines[step].cmd;
+    let i = 0;
+    setTyped('');
+    const id = setInterval(() => {
+      i++;
+      setTyped(cmd.slice(0, i));
+      if (i >= cmd.length) {
+        clearInterval(id);
+        setTimeout(() => setStep((s) => s + 1), 550);
+      }
+    }, 55);
+    return () => clearInterval(id);
+  }, [step]);
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center px-4 md:px-6 pt-16 relative overflow-hidden">
-      {/* Wavy dynamic background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background to-wave-dark overflow-hidden">
-        <div className="absolute inset-0 opacity-30">
-          {/* First wave layer */}
-          <svg className="absolute w-full min-w-[1200px] h-[80vh] top-[15vh] animate-wave1" viewBox="0 0 1200 200" xmlns="http://www.w3.org/2000/svg">
-            <path 
-              fill="#2e224f"
-              d="M0,192 C220,100 440,100 660,192 C880,290 1100,290 1320,192 L1320,500 L0,500 Z" 
-            />
-          </svg>
-          
-          {/* Second wave layer */}
-          <svg className="absolute w-full min-w-[1200px] h-[80vh] top-[20vh] animate-wave2" viewBox="0 0 1200 200" xmlns="http://www.w3.org/2000/svg">
-            <path 
-              fill="#251c41" 
-              d="M0,150 C320,50 480,150 640,120 C800,90 960,20 1200,150 L1200,500 L0,500 Z" 
-            />
-          </svg>
-          
-          {/* Third wave layer */}
-          <svg className="absolute w-full min-w-[1200px] h-[80vh] top-[25vh] animate-wave3" viewBox="0 0 1200 200" xmlns="http://www.w3.org/2000/svg">
-            <path 
-              fill="#1A1F2C" 
-              d="M0,180 C170,220 270,180 370,80 C470,0 570,100 670,150 C770,200 870,180 970,110 C1070,40 1170,100 1270,180 L1200,500 L0,500 Z" 
-            />
-          </svg>
-        </div>
-        
-        {/* Gradient overlay to blend with content */}
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
-      </div>
-      
-      {/* Content */}
-      <div className="w-full max-w-4xl mx-auto z-10">
-        <div className={`space-y-8 ${isVisible ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}>
-          <p className="text-accent font-mono animate-fade-in tracking-wider">Hi, my name is</p>
-          <h1 className="text-4xl md:text-6xl font-bold animate-fade-in animate-delay-100 flex items-center">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent animate-glow">
-              {typedName}
-            </span>
-            <span className={`inline-block w-1 h-12 bg-accent ml-1 ${cursorVisible ? 'opacity-100' : 'opacity-0'} transition-opacity duration-200`}></span>
-          </h1>
-          <h2 className="text-3xl md:text-5xl font-bold text-muted-foreground animate-fade-in animate-delay-200">
-            I build scalable backend systems.
-          </h2>
-          <p className="max-w-2xl text-muted-foreground animate-fade-in animate-delay-300">
-            I'm a software engineer with 5 years of experience in Ecommerce and Fintech App Development,
-            solving complex challenges collaboratively and building scalable features that enhance UX and drive growth.
-          </p>
-          
-          {/* Skill Pills */}
-          <div className="flex flex-wrap gap-2 animate-fade-in animate-delay-350">
-            {skills.map((skill, index) => (
-              <Badge 
-                key={index} 
-                variant={skill.color as "yellow" | "blue" | "green" | "orange" | "purple"}
-                className="py-1.5 px-3 text-sm font-medium rounded-full"
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden grain"
+    >
+      {/* Soft warm gradient backdrop */}
+      <div className="absolute inset-0 -z-10" style={{ background: 'var(--gradient-warm)' }} />
+      <div className="absolute -top-40 -right-32 -z-10 h-[420px] w-[420px] rounded-full blur-3xl"
+           style={{ background: 'hsl(var(--accent) / 0.18)' }} />
+
+      <div className="container-narrow w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          {/* Left — typographic statement */}
+          <div className="lg:col-span-7 space-y-7">
+            <div className="flex items-center gap-3 animate-fade-in">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+              </span>
+              <span className="eyebrow">Available for new roles · 2026</span>
+            </div>
+
+            <h1 className="font-display text-[clamp(2.5rem,7.5vw,5rem)] font-medium leading-[1] tracking-tight text-balance animate-fade-in" style={{ animationDelay: '80ms' }}>
+              Backend systems,
+              <br />
+              <span className="italic text-foreground/80">crafted</span> with{' '}
+              <span className="relative inline-block whitespace-nowrap">
+                <span className="relative z-10">care.</span>
+                <span className="absolute inset-x-0 bottom-1 h-3 -z-0" style={{ background: 'hsl(var(--accent) / 0.45)' }} />
+              </span>
+            </h1>
+
+            <p className="max-w-xl text-lg text-muted-foreground leading-relaxed text-pretty animate-fade-in" style={{ animationDelay: '160ms' }}>
+              I'm <span className="text-foreground font-medium">Muhammad Ahmad</span>, a Senior Backend Engineer
+              shipping production fintech, e-commerce and AI-driven platforms for thousands of users —
+              with Node.js, Python and AWS.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-4 animate-fade-in" style={{ animationDelay: '240ms' }}>
+              <a
+                href="#experience"
+                className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition-transform hover:scale-[1.02]"
               >
-                {skill.name}
-              </Badge>
-            ))}
-          </div>
-          
-          <div className="flex flex-col sm:flex-row gap-4 pt-4 animate-fade-in animate-delay-400">
-            <Button className="group relative overflow-hidden bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent text-white" asChild>
-              <a href="#experience" className="flex items-center">
-                View my work
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                See my work
+                <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
-            </Button>
-            <Button variant="outline" className="border-accent/20 hover:bg-accent/10 hover:text-accent" asChild>
-              <a href="#contact">Contact me</a>
-            </Button>
+              <a href="#contact" className="link-arrow text-sm">
+                Get in touch →
+              </a>
+              <span className="hidden sm:inline-flex items-center gap-1.5 text-xs text-muted-foreground">
+                <MapPin size={12} /> Islamabad, Pakistan
+              </span>
+            </div>
+          </div>
+
+          {/* Right — terminal card */}
+          <div className="lg:col-span-5 animate-fade-in" style={{ animationDelay: '320ms' }}>
+            <div className="terminal text-[13px] sm:text-sm">
+              <div className="terminal-bar">
+                <span className="terminal-dot" style={{ background: '#ff5f57' }} />
+                <span className="terminal-dot" style={{ background: '#febc2e' }} />
+                <span className="terminal-dot" style={{ background: '#28c840' }} />
+                <span className="ml-3 font-mono text-xs text-white/40">ahmad@portfolio — zsh</span>
+              </div>
+              <div className="p-5 sm:p-6 font-mono text-white/85 space-y-3 min-h-[280px]">
+                {lines.slice(0, step).map((l, i) => (
+                  <div key={i} className="space-y-1">
+                    <div className="flex gap-2">
+                      <span className="text-accent">➜</span>
+                      <span className="text-white/50">{l.prompt}</span>
+                      <span className="text-white">{l.cmd}</span>
+                    </div>
+                    <div className="pl-6 text-white/70">{l.out}</div>
+                  </div>
+                ))}
+                {step < lines.length && (
+                  <div className="flex gap-2">
+                    <span className="text-accent">➜</span>
+                    <span className="text-white/50">{lines[step].prompt}</span>
+                    <span className="text-white">
+                      {typed}
+                      <span className="inline-block w-2 h-4 align-middle bg-accent ml-0.5 animate-caret-blink" />
+                    </span>
+                  </div>
+                )}
+                {step >= lines.length && (
+                  <div className="flex gap-2">
+                    <span className="text-accent">➜</span>
+                    <span className="text-white/50">~/ahmad</span>
+                    <span className="inline-block w-2 h-4 align-middle bg-accent ml-0.5 animate-caret-blink" />
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
