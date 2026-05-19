@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
-const RESUME_URL = 'https://drive.google.com/file/d/1EdW9O_SoSaAvGNyBhkvrmv2XQdA2cUNH/view';
+const RESUME_URL = 'https://drive.google.com/file/d/17VxqvtY1mTkhKWBXiGnl23cAjEoeGoLr/view';
 
 const navLinks = [
   { href: '#about', label: 'About', n: '01' },
